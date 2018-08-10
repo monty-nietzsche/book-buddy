@@ -1,22 +1,14 @@
 {% extends "main.html" %}
 {% block content %}
 
-<script type="text/javascript">
-        function checkTheBox() {
-                var price = document.forms["editthebook"]["price"].value;
-                if (price == null || price == 0) {
-                alert("The price can't be zero! Please check the price and try again!");
-                return false;
-                }
-                return true;
-        } 
-</script>
+<script type="text/javascript" src="/static/validation.js"></script>
 
 <article class="main">
     <div class="container">
                 <div class="package-content">
                         <h3>Edit Book: {{book.title}}</h3>
-                        <form name="editthebook" action="{{url_for('editBook', book_id = book.id)}}" method = 'POST' onsubmit="return checkTheBox()">
+                        <form name="form" action="{{url_for('editBook', book_id = book.id)}}" 
+                                id = "book" method = 'POST' onsubmit="return validateForm()">
                                 <table>
                                         <tr>
                                                 <td class="tbl-label">ISBN</td>

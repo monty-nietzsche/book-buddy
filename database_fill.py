@@ -128,7 +128,7 @@ for isbn in isbns:
         if oldBook is not None:
             pass
             # print('The book with isbn: %s already exists' % isbn)
-            
+
         else:
 
             # The condition of the book is randomly generated between 1 and 5.

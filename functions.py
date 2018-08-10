@@ -6,30 +6,29 @@ import string
 
 
 def generateComments():
-    '''
-    returns a gibberish sentence to simulate a comment in the sample data
-    initially filling the database. The sentence consists of 4 words.
-    '''
+    """Return a gibberish sentence to simulate a comment."""
     return ' '.join([''.join([random.choice(string.ascii_letters) for n in
                      xrange(random.randint(4, 10))]) for x in xrange(5)]).\
         capitalize()+"."
 
 
 def getBookDetails(isbn):
-    '''
-    takes as input the isbn of a book and queries the Google Books API to
-    get the book details such as title, author, image and so on.
+    """Get the book details given ISBN from Google Books API.
+
+    The function takes as input the isbn of a book and queries
+    the Google Books API to retrieve the book details such as
+    title, author, image and so on.
 
     args: isbn (string) representing the unique ISBN of a book
 
-    returns: a dictionary 'Book' containing all available details of the book
-    with the ISBN specified in args, if the API request is successful. If not,
-    return a dictionary 'Book' containing either a unique key 'error' if the
-    request fails, or 'nobook' if the API response contains no book with the
-    specific ISBN
-    '''
+    returns: a dictionary 'Book' containing all available details
+    of the book with the ISBN specified in args, if the API request
+    is successful. If not, return a dictionary 'Book' containing
+    either a unique key 'error' if the request fails, or 'nobook'
+    if the API response contains no book with the specific ISBN.
 
-    base_api_link = "https://www.googleapis.com/books/v1/volumes?key=AIzaSyCQpRsaa8lNlskF-gw1Jsdx1kTn_YVn1aw&q=isbn:"
+    """
+    base_api_link = "https://www.googleapis.com/books/v1/volumes?key=AIzaSyAGyBcAxFXdSbkR6ibNgXtiNW4K8uW6rPQ&q=isbn:"
 
     f = urllib.urlopen(base_api_link + isbn)
     text = f.read()
@@ -108,13 +107,14 @@ def getBookDetails(isbn):
 
 
 def getLanguagesList():
-    '''
+    """Return a correspondance dictionary of language abbrev. and names.
+
     returns a dictionary of correspondance between standard language
     abbreviations and the name of the lanugage. e.g. 'en' is an
     abbreviation corresponding to 'english'. The response of Google Books
     API returns an abbreviation while the name of the language is displayed
     on the website.
-    '''
+    """
     LanguageList = {'ab': 'Abkhazian',  'aa': 'Afar', 'af': 'Afrikaans',
                     'ak': 'Akan', 'sq': 'Albanian', 'am': 'Amharic',
                     'ar': 'Arabic', 'an': 'Aragonese', 'hy': 'Armenian',
@@ -134,7 +134,7 @@ def getLanguagesList():
                     'et': 'Estonian', 'ee': 'Ewe', 'fo': 'Faroese',
                     'fj': 'Fijian', 'fi': 'Finnish', 'fr': 'French',
                     'ff': 'Fula,  Fulah,  Pulaar,  Pular', 'gl': 'Galician',
-                    'gd': 'Gaelic (Scottish)', 'gv': 'Gaelic (Manx)',
+                    'gd': 'Gaelic (Scottish)',
                     'ka': 'Georgian', 'de': 'German', 'el': 'Greek',
                     'kl': 'Greenlandic', 'gn': 'Guarani', 'gu': 'Gujarati',
                     'ht': 'Haitian Creole', 'ha': 'Hausa', 'he': 'Hebrew',
@@ -143,7 +143,7 @@ def getLanguagesList():
                     'ig': 'Igbo', 'id,  in': 'Indonesian', 'ia': 'Interlingua',
                     'ie': 'Interlingue', 'iu': 'Inuktitut', 'ik': 'Inupiak',
                     'ga': 'Irish', 'it': 'Italian', 'ja': 'Japanese',
-                    'jv': 'Javanese', 'kl': 'Kalaallisut,  Greenlandic',
+                    'jv': 'Javanese',
                     'kn': 'Kannada', 'kr': 'Kanuri', 'ks': 'Kashmiri',
                     'kk': 'Kazakh', 'km': 'Khmer', 'ki': 'Kikuyu',
                     'rw': 'Kinyarwanda (Rwanda)', 'rn': 'Kirundi',
@@ -170,8 +170,8 @@ def getLanguagesList():
                     'se': 'Sami', 'sm': 'Samoan', 'sg': 'Sango',
                     'sa': 'Sanskrit', 'sr': 'Serbian', 'sh': 'Serbo-Croatian',
                     'st': 'Sesotho', 'tn': 'Setswana', 'sn': 'Shona',
-                    'ii': 'Sichuan Yi', 'sd': 'Sindhi', 'si': 'Sinhalese',
-                    'ss': 'Siswati', 'sk': 'Slovak', 'sl': 'Slovenian',
+                    'sd': 'Sindhi', 'si': 'Sinhalese',
+                    'sk': 'Slovak', 'sl': 'Slovenian',
                     'so': 'Somali', 'nr': 'Southern Ndebele', 'es': 'Spanish',
                     'su': 'Sundanese', 'sw': 'Swahili (Kiswahili)',
                     'ss': 'Swati', 'sv': 'Swedish', 'tl': 'Tagalog',

@@ -30,10 +30,10 @@
             <h3>Latest books</h3> {% for book in books %}
 
             <div class="book">
-                    <a href='{{url_for('showBook',book_id=book["id"])}}'>
-                <div class="module" style="background: url({{book.image}})">
-                </div>
-            </a>
+                <a href='{{url_for('showBook',book_id=book["id"])}}'>
+                    <div class="module" style="background: url({{book.image}})">
+                    </div>
+                </a>
                 <div><span class="title">{{book["title"][:15]}}...</span></div>
                 <!-- {{book["author"]}}<br> -->
                 <!-- {{book["isbn"]}}<br>

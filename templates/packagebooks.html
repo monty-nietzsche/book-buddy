@@ -23,11 +23,11 @@
         {% for book in books %}
 
         <a href='{{url_for('showBook',book_id=book["id"])}}'>
-                        <div class="book">
-                                        <a href='{{url_for('showBook',book_id=book["id"])}}'>
-                                    <div class="module" style="background: url({{book.image}})">
-                                    </div>
-                                </a>
+                <div class="book">
+                        <a href='{{url_for('showBook',book_id=book["id"])}}'>
+                                <div class="module" style="background: url({{book.image}})">
+                                </div>
+                        </a>
                         <span class="title">{{book["title"][:15]}}...</span><br>
                         <!-- {{book["author"]}}<br> -->
                         <!-- {{book["isbn"]}}<br>
