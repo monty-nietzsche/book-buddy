@@ -1,0 +1,88 @@
+{% extends "main.html" %} {% block content %}
+
+<script type="text/javascript">
+    function checkTheBox() {
+        var list, index, item, checkedCount, price;
+        checkedCount = 0;
+        list = document.getElementsByName('book[]');
+        price = document.forms["editpackage"]["price"].value;
+
+        for (index = 0; index < list.length; index++) {
+            item = list[index];
+            if (item.checked) {
+                checkedCount++;
+            }
+        }
+
+        if (price == null || price == 0) {
+            alert("The price of package can't be zero! Please check the price and try again");
+            return false;
+        } else if (checkedCount < 2) {
+            alert("A package must contain at least two books!");
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+</script>
+
+<article class="main">
+    <div class="container">
+
+        <div class="package-content">
+            <h3>Edit Package #0000{{package.id}}</h3>
+
+            <form name="editpackage" action="#" method='POST' onsubmit="return checkTheBox()">
+                <table>
+                    <tr>
+                        <td class="tbl-label">PRICE</td>
+                        <td>
+                            <input type='text' size='30' name='price' value='{{package.price}}'>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="tbl-label">BOOKS IN THIS PACKAGE
+                        </td>
+                    </tr>
+                    {% for book in selectedBooks %}
+                    <tr>
+                        <td colspan="2" class="tbl-list">
+
+                            <span class="tbl-entry">
+                                        <input type ='checkbox' name="book[]" value="{{book.id}}" checked=true />{{book.title}} [${{book.price}}] 
+                                </span>
+                            <br />
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="2" class="tbl-label">OTHER BOOKS</td>
+                    </tr>
+                    {% for book in books %} {% if book not in selectedBooks: %}
+                    <tr>
+                        <td colspan="2" class="tbl-list">
+
+                            <span class="tbl-entry">
+                                                <input type ='checkbox' name="book[]" value="{{book.id}}" />{{book.title}} [ ${{book.price}} ] 
+                                        </span>
+                            <br />
+
+                        </td>
+                    </tr>
+                    {% endif %} {% endfor %}
+                    <tr>
+                        <td colspan="2">
+                            <input class="admin-btn" type='submit' value='Update Package #0000{{package.id}}'>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </form>
+        </div>
+    </div>
+</article>
+{% include "menu.html" %} {% endblock %}

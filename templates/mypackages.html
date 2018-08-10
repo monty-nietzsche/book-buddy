@@ -1,0 +1,33 @@
+{% extends "main.html" %} {% block content %}
+<article class="main">
+    <div class="container">
+        <!--MESSAGE FLASHING -->
+        {% include "flash.html" %}
+        <div class="package-content">
+            <h3>Packages of {{user}}</h3>
+            <div class="package-admin">
+                <a class="admin-btn" href='{{url_for('newPackage')}}'>New Package</a>
+            </div>
+
+            {% for package in packages %}
+
+            <div class="package">
+
+                <a href='{{url_for('showPackageBooks',package_id=package[0])}}'>
+                    <div class="module" style="background: url({{package[3]}});">
+                        <h2>+ {{package[1]-1}} books</h2>
+                    </div>
+                </a>
+                <span class="title">Package: #0000{{package[0]}}</span>
+                <br>
+                <span class="title"> Price : ${{package[2]}}</span>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</article>
+{% include "menu.html" %} {% endblock %}

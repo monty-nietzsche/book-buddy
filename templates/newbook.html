@@ -1,0 +1,65 @@
+{% extends "main.html" %} {% block content %}
+
+<script type="text/javascript">
+    function checkTheBox() {
+            var price = document.forms["thenewbook"]["price"].value;
+            if (price == null || price ==0 ) {
+                    alert ("The price can't be zero! Please check the price and try again!");
+                    return false;
+            } 
+            return true;
+    }
+</script>
+
+<article class="main">
+    <div class="container">
+        <div class="package-content">
+            <h3>Add a new Book</h3>
+            <form name="thenewbook" action="{{url_for('newBook')}}" method='POST' onsubmit="return checkTheBox()">
+                <table>
+                    <tr>
+                        <td class="tbl-label">ISBN</td>
+                        <td>
+                            <input type='text' size='30' name='isbn'>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tbl-label">CONDITION</td>
+                        <td>
+                            <select name="condition">
+                                <option value=1>Torn</option>
+                                <option value=2>Bad</option>
+                                <option value=3>Fairly good</option>
+                                <option value=4>Good</option>
+                                <option value=5>New</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="tbl-warning">* Condition takes values between 1 (very bad) and 5 (New)</td>
+                    </tr>
+                    <tr>
+                        <td class="tbl-label">PRICE</td>
+                        <td>
+                            <input type="number" name="price" width="3">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tbl-label">COMMENTS</td>
+                        <td>
+                            <textarea name="comments" rows="5" cols="30"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input class="admin-btn" type='submit' value='Add a New Book'>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+    </div>
+</article>
+{% include "menu.html" %} {% endblock %}

@@ -1,0 +1,55 @@
+{% extends "main.html" %} {% block content %}
+
+<article class="main">
+    <div class="container">
+        <div class="package-content dark">
+            <h3>Delete Book</h3>
+            <div class="book-info">
+                <div class="image"><img src='{{book.image}}'></div>
+                <div class="book-details">
+                    <span class="book-title"> {{book.title}}</span>&nbsp;<span class="book-language">{{book.language}}</span>
+                    <br>
+                    <span class="book-author">{{book.author}}</span>
+                    <br>
+                    <span class="book-category">
+                                <a href=''></a>
+                            </span>
+                    <br>
+                    <span class="book-description">{{book.description}}</span>
+                    <br>
+                    <div class="book-sale-info">
+                        Book condition : {% for a in range(1,1+ book.condition): %}
+                        <i class="fas fa-star checked"></i> {% endfor %} {% for b in range(book.condition,5): %}
+                        <i class="fas fa-star unchecked"></i> {% endfor %}
+                        <br> Price: ${{book.price}}
+                        <br> Seller's comments: {{book.comments}}
+                        <div class="book-admin">
+                            <a class="admin-btn" href='{{url_for('newBook')}}'>New Book</a>
+                            <a class="admin-btn" href='{{url_for('editBook', book_id=book.id)}}'>Edit this book</a>
+                            <a class="admin-btn" href='{{url_for('deleteBook', book_id=book.id)}}'>Delete this book</a>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- <div class="image"><img src='{{book.image}}'></div> -->
+            </div>
+        </div>
+        <div class="package-content">
+
+            <div class="warning">
+                <span class="book-title"><i class="fas fa-exclamation"></i> &emsp; ARE YOU 
+                                SURE YOU WANT TO DELETE '{{book.title}}'? &emsp;  </span>
+            </div>
+            <div>
+                <form action="{{ url_for('deleteBook', book_id=book.id)}}" method='POST'>
+                    <input class="warning-btn " type='submit' , value='confirm Deletion'>
+                    <a class="admin-btn" href="{{ url_for('showBook',book_id=book.id)}}"> Cancel </a>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</article>
+
+{% include "menu.html" %} {% endblock %}

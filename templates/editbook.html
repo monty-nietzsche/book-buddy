@@ -1,0 +1,92 @@
+{% extends "main.html" %}
+{% block content %}
+
+<script type="text/javascript">
+        function checkTheBox() {
+                var price = document.forms["editthebook"]["price"].value;
+                if (price == null || price == 0) {
+                alert("The price can't be zero! Please check the price and try again!");
+                return false;
+                }
+                return true;
+        } 
+</script>
+
+<article class="main">
+    <div class="container">
+                <div class="package-content">
+                        <h3>Edit Book: {{book.title}}</h3>
+                        <form name="editthebook" action="{{url_for('editBook', book_id = book.id)}}" method = 'POST' onsubmit="return checkTheBox()">
+                                <table>
+                                        <tr>
+                                                <td class="tbl-label">ISBN</td>
+                                                <td>
+                                                        <input type='text' size='30' value = {{book.isbn}} disabled>
+                                                        <input type='hidden' size='30' name='isbn' value = {{book.isbn}}>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td class="tbl-label">TITLE</td>
+                                                <td>
+                                                        <input type='text' size='30' value = '{{book.title}}' disabled>
+                                                </td>
+                                                </tr>
+                                        <tr>
+                                                <td class="tbl-label">CONDITION</td>
+                                                <td>
+                                                        <select name="condition">
+                                                                <option value=1  
+                                                                {% if book.condition == 1: %}
+                                                                        selected
+                                                                {% endif %}
+                                                                >Torn</option>
+                                                                <option value=2 
+                                                                {% if book.condition == 2: %}
+                                                                        selected
+                                                                {% endif %}                                                                
+                                                                >Bad</option>
+                                                                <option value=3
+                                                                {% if book.condition == 3: %}
+                                                                selected
+                                                                {% endif %}
+                                                                >Fairly good</option>
+                                                                <option value=4
+                                                                {% if book.condition == 4: %}
+                                                                        selected
+                                                                {% endif %}
+                                                                >Good</option>
+                                                                <option value=5
+                                                                {% if book.condition == 5: %}
+                                                                selected
+                                                                {% endif %}
+                                                                >New</option>
+                                                        </select>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td class="tbl-label">PRICE</td>
+                                                <td>
+                                                        <input type='text' name='price' value = '{{book.price}}'>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td class="tbl-label">COMMENTS</td>
+                                                <td>
+                                                        <textarea name="comments" rows="5" cols="30">{{book.comments}}</textarea>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td colspan="2">
+                                                        <input class="admin-btn" type='submit' value = 'Update this book'>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td colspan="2" class="tbl-warning">* If you want to change the ISBN of the book, delete this book and create a new Ad.</td>
+                                        </tr>
+                                </table>
+                        </form>
+                </div>
+        </div>    
+</article>
+{% include "menu.html" %}
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+{% block content %}
+
+<article class="main">
+    <div class="container">     
+        <!--MESSAGE FLASHING -->
+        {% include "flash.html" %}
+        <div class="package-content">
+                <h3>Package #0000{{package.id}}</h3>
+                <h4><i class="fas fa-hand-holding-usd"></i> You save ${{saving}}</h4>
+               
+                <div class="package-admin">
+                {% if loggedIn == True: %}
+                        <a class="admin-btn" href='{{url_for('newPackage')}}'>New Package</a>
+                        {% if can_edit == True %}
+                        <a class="admin-btn" href='{{url_for('editPackage', package_id=package.id)}}'>Edit this package</a>
+                        <a class="admin-btn" href='{{url_for('deletePackage', package_id=package.id)}}'>Delete this package</a> 
+                        {% endif %}
+                {% endif %}
+                </div>
+               
+                <div>
+        {% for book in books %}
+
+        <a href='{{url_for('showBook',book_id=book["id"])}}'>
+                        <div class="book">
+                                        <a href='{{url_for('showBook',book_id=book["id"])}}'>
+                                    <div class="module" style="background: url({{book.image}})">
+                                    </div>
+                                </a>
+                        <span class="title">{{book["title"][:15]}}...</span><br>
+                        <!-- {{book["author"]}}<br> -->
+                        <!-- {{book["isbn"]}}<br>
+                        {{book["description"]}}<br>
+                        {{book["condition"]}}<br> -->
+                        {% for a in range(1,1+ book.condition): %}
+                        <i class="fas fa-star checked"></i>
+                        {% endfor %}
+                        {% for b in range(book.condition,5): %}
+                        <i class="fas fa-star unchecked"></i>
+                        {% endfor %}<br>
+                        <span class="title">Price: ${{book.price}} </span>
+                        <!-- {{book["comments"]}} 
+                        <a href='{{url_for('editBook', book_id=book["id"])}}'>Edit</a>
+                        <a href='{{url_for('deleteBook', book_id=book["id"])}}'>Delete</a>  -->
+                
+                </div>
+        </a>
+
+        {% endfor %}
+        </div>
+        </div>       
+</div>    
+</article>
+{% include "menu.html" %}
+
+{% endblock %}

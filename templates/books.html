@@ -1,0 +1,87 @@
+{% extends "main.html" %} {% block content %}
+<article class="main">
+
+    <div class="container">
+
+        <!--MESSAGE FLASHING -->
+        {% include "flash.html" %}
+
+        <div class="package-content">
+            <h3>Latest Packages</h3> {% for package in packages %}
+
+            <div class="package">
+
+                <a href='{{url_for('showPackageBooks',package_id=package[0])}}'>
+                    <div class="module" style="background: url({{package[3]}});">
+                        <h2>+ {{package[1]-1}} books</h2>
+                    </div>
+                </a>
+                <span class="title">Package: #0000{{package[0]}}</span>
+                <br>
+                <span class="title"> Price : ${{package[2]}}</span>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="package-content">
+            <h3>Latest books</h3> {% for book in books %}
+
+            <div class="book">
+                    <a href='{{url_for('showBook',book_id=book["id"])}}'>
+                <div class="module" style="background: url({{book.image}})">
+                </div>
+            </a>
+                <div><span class="title">{{book["title"][:15]}}...</span></div>
+                <!-- {{book["author"]}}<br> -->
+                <!-- {{book["isbn"]}}<br>
+                    {{book["description"]}}<br>
+                    {{book["condition"]}}<br> -->
+                <div>{% for a in range(1,1+ book.condition): %}
+                    <span class="fa fa-star checked"></span> {% endfor %} {% for b in range(book.condition,5): %}
+                    <span class="fa fa-star unchecked"></span> {% endfor %}</div>
+                <span class="title">Price: ${{book.price}} </span>
+                <!-- {{book["comments"]}} 
+                    <a href='{{url_for('editBook', book_id=book["id"])}}'>Edit</a>
+                    <a href='{{url_for('deleteBook', book_id=book["id"])}}'>Delete</a>  -->
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="package-content">
+            <h3>Cheapest books</h3> {% for book in cheapbooks %}
+
+            <div class="book">
+                    <a href='{{url_for('showBook',book_id=book["id"])}}'>
+                            <div class="module" style="background: url({{book.image}})">
+                            </div>
+                        </a>
+
+                <span class="title">{{book["title"][:15]}}...</span>
+                <br>
+                <!-- {{book["author"]}}<br> -->
+                <!-- {{book["isbn"]}}<br>
+                    {{book["description"]}}<br>
+                    {{book["condition"]}}<br> -->
+                {% for a in range(1,1+ book.condition): %}
+                <i class="fa fa-star checked"></i> {% endfor %} {% for b in range(book.condition,5): %}
+                <i class="fa fa-star unchecked"></i> {% endfor %}
+                <br>
+                <span class="title">Price: ${{book.price}} </span>
+                <!-- {{book["comments"]}} 
+                    <a href='{{url_for('editBook', book_id=book["id"])}}'>Edit</a>
+                    <a href='{{url_for('deleteBook', book_id=book["id"])}}'>Delete</a>  -->
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</article>
+{% include "menu.html" %} {% endblock %}

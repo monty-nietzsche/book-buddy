@@ -1,0 +1,25 @@
+<div class="container">
+        <div style=" width:100%">
+                <div class="logo" style="float:left; width:70%;">
+                <a href="{{url_for('showBooks')}}"><img src="/static/logo.jpg"></a> &nbsp;
+        
+                </div>
+                <div class="top-menu" style="float:left; width:30%;text-align: right;">
+                <div style="vertical-align: bottom">
+                        {%if 'username' not in session %}
+                        <img src="/static/pholder.gif" style="width: 60px;height:50px">
+                        <br>
+                        <a class="admin-btn" href="{{url_for('showLogin')}}">Click Here to Login </a> {% else %}
+                        <img src="{{session["picture"]}}" style="width: 50px;height:50px;margin-right:10px;margin-bottom:2px;">
+                        <br>
+                        {% if session["type"] == 'dummy': %}
+                        <a class="admin-btn" href="{{url_for('disconnectDummy')}}">Logout {{session["username"]}} [{{session["type"]}}]</a> 
+                        {% else: %}
+                        <a class="admin-btn" href="{{url_for('gdisconnect')}}">Logout {{session["username"]}}</a> 
+                        {% endif %}
+                        {% endif %}
+        
+                </div>
+                </div>
+        </div>
+</div>

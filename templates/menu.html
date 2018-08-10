@@ -1,0 +1,26 @@
+<aside class="aside aside-1">
+        <ul>
+            <li><a href='{{ url_for('showBooks') }}'><i class="fas fa-home"></i>  &nbsp; Home</a></li>
+            <li><a href='{{ url_for('showPackages') }}'><i class="fas fa-paperclip"></i> &nbsp; Packages</a></li>
+        </ul>
+        {%if 'username' in session %}
+        <ul>
+            <p class="menu-title">User Space</p>
+            <li><a href='{{ url_for('showMyBooks') }}'><i class="fas fa-book-open"></i> &nbsp; My Books</a></li>
+            <li><a href='{{ url_for('showMyPackages') }}'><i class="fas fa-paperclip"></i> &nbsp; My Packages</a></li>
+        </ul>
+        {% endif %}
+        <p class="menu-title">Browse by category</p>
+        <ul>
+            {% for category in categories %}
+            <li><a href='{{ url_for('showBooksPerCategory', category_id=category.id) }}'><i class="fas fa-layer-group"></i> &nbsp; {{category.name}}</a></li>
+            {% endfor %}
+        </ul>
+        <p class="menu-title">Browse by language</p>
+        <ul>
+            {% for language in languages %}
+            <li><a href='{{ url_for('showBooksPerLanguage', lang=language[0]) }}'><i class="fas fa-globe"></i> &nbsp; {{language[1]}}[{{language[2]}}]</a></li>
+            {% endfor %}
+        </ul>
+    
+    </aside>
