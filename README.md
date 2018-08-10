@@ -13,6 +13,7 @@
 - BookBuddy automatically creates two dummy users: 'Jacob Svensson' and 'John Smith'. Users can login as any of these dummy users to test the different functionalities of the BookBuddy platform.
 - In the current version of BookBuddy, users can only use google third-party sign-in utility.
 - Bookbuddy is written in Python and uses sqlalachemy orm to interact with SQLite database. 
+- It provides API endpoints where users can get a list in json format of all books, all packages as well as books per category.
 
 ## Getting Started
 
@@ -35,7 +36,7 @@ Once all requirements are met, proceed with the following steps:
 
 1. _Create bookbuddy folder_ : Create a folder called `bookbuddy` in the location of your preference. For illustration purposes, assume you create the `bookbuddy` report under the root folder `c:\`. 
 
-2. _Download installation files_ : Download [installation.zip](https://github.com/monty-nietzsche/bookbuddy/blob/master/files/installation.zip) and unzip its contents in the bookbuddy folder. The `installation.zip` contains two folders `templates` and `static` as well as six files `Vagrantfile`, `client_secrets.json`,`functions.py`, `database_setup.py`, `database_fill.py` and `application.py`. Before proceeding, make sure that your bookbuddy folder contains all of the above. To check this, `cd` to the bookbuddy folder and type `ls`.
+2. _Download installation files_ : Download [bookbuddy.zip](https://github.com/monty-nietzsche/bookbuddy/raw/master/bookbuddy.zip) and unzip its contents in the bookbuddy folder. The file `bookbuddy.zip` contains two folders `templates` and `static` as well as six files `Vagrantfile`, `client_secrets.json`,`functions.py`, `database_setup.py`, `database_fill.py` and `application.py`. Before proceeding, make sure that your bookbuddy folder contains all of the above. To check this, `cd` to the bookbuddy folder and type `ls`.
 <p align="center">
   <img src="https://github.com/monty-nietzsche/bookbuddy/blob/master/images/1.jpg">
 </p>
@@ -58,15 +59,9 @@ Once all requirements are met, proceed with the following steps:
   <img src="https://github.com/monty-nietzsche/bookbuddy/blob/master/images/4.jpg">
 </p>
 
-6. _Setup and fill data into database_:
-To set up the database, type `python database_setup.py`. 
+6. _Setup database and fill it with sample data_:
+To set up the database and fill it with sample data, type `python database_fill.py`. 
 
-<p align="center">
-  <img src="https://github.com/monty-nietzsche/bookbuddy/blob/master/images/5.jpg">
-</p>
-
-7. _Fill up the database with sample data_
-Type `python database_fill.py`.
 <p align="center">
   <img src="https://github.com/monty-nietzsche/bookbuddy/blob/master/images/6.jpg">
 </p>
@@ -94,6 +89,14 @@ The functionalities to be tested are:
 - Login using Google Sign-In Utility
 - Add a book / Edit a book / Delete a book
 - Add a package / Edit a package / Delete a package
+- API end points:
+  - Get all books in json format
+  ```/books/json/```
+  - Get all packages in json format
+  ```/packages/json/```
+  - Get all books per category
+    ```/category/<int:category_id>/books/json/```
+  
 
 ### Author
 
