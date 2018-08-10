@@ -36,7 +36,7 @@ Once all requirements are met, proceed with the following steps:
 
 1. _Create bookbuddy folder_ : Create a folder called `bookbuddy` in the location of your preference. For illustration purposes, assume you create the `bookbuddy` report under the root folder `c:\`. 
 
-2. _Download installation files_ : Download [installation.zip](https://github.com/monty-nietzsche/bookbuddy/blob/master/files/installation.zip) and unzip its contents in the bookbuddy folder. The `installation.zip` contains two folders `templates` and `static` as well as six files `Vagrantfile`, `client_secrets.json`,`functions.py`, `database_setup.py`, `database_fill.py` and `application.py`. Before proceeding, make sure that your bookbuddy folder contains all of the above. To check this, `cd` to the bookbuddy folder and type `ls`.
+2. _Download installation files_ : Download [bookbuddy.zip](https://github.com/monty-nietzsche/bookbuddy/blob/master/files/bookbuddy.zip) and unzip its contents in the bookbuddy folder. The file `bookbuddy.zip` contains two folders `templates` and `static` as well as six files `Vagrantfile`, `client_secrets.json`,`functions.py`, `database_setup.py`, `database_fill.py` and `application.py`. Before proceeding, make sure that your bookbuddy folder contains all of the above. To check this, `cd` to the bookbuddy folder and type `ls`.
 <p align="center">
   <img src="https://github.com/monty-nietzsche/bookbuddy/blob/master/images/1.jpg">
 </p>
