@@ -40,7 +40,7 @@ class Book(Base):
     id = Column(Integer, primary_key=True)
     isbn = Column(String(13), nullable=False)
     title = Column(String(250))
-    author = Column(String(100))
+    author = Column(String(250))
     image = Column(String(500))
     description = Column(String(1000))
     language = Column(String(2))
