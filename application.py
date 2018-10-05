@@ -30,10 +30,11 @@ session = DBSession()
 
 
 app = Flask(__name__)
+app_path =""
 
 
 CLIENT_ID = json.loads(
-    open('client_secrets.json', 'r').read())['web']['client_id']
+    open(app_path + 'client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Oldbooks Market"
 
 
@@ -64,7 +65,7 @@ def gconnect():
 
     try:
         # Upgrade the authorization code into a credentials object
-        oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+        oauth_flow = flow_from_clientsecrets(app_path + 'client_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
         credentials = oauth_flow.step2_exchange(code)
     except FlowExchangeError:
@@ -793,7 +794,8 @@ def showPackageBooks(package_id):
         normalCost = session.query(Packagebook.package_id,
                                    func.sum(Book.price).label('total')).\
                                    filter_by(package_id=package_id).\
-                                   filter(Packagebook.book_id == Book.id).one()
+                                   filter(Packagebook.book_id == Book.id).\
+                                   group_by(Packagebook.package_id).one()
 
         saving = normalCost.total-thisPackage.price
 
