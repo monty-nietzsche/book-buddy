@@ -486,7 +486,7 @@ def newBook():
 
     else:
 
-        return render_template('newBook.html',
+        return render_template('newbook.html',
                                categories=getCategories(),
                                languages=getLanguages())
 
