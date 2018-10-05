@@ -686,11 +686,6 @@ def deleteBook(book_id):
 
     if request.method == 'POST':
 
-        # Delete the book
-        thisBook = session.query(Book).filter_by(id=book_id).one()
-        session.delete(thisBook)
-        session.commit()
-
         # Delete all book-package associations
         bookPackages = []
         thisBookAssociations = session.query(Packagebook).\
@@ -700,6 +695,12 @@ def deleteBook(book_id):
                 bookPackages.append(association.package_id)
                 session.delete(association)
                 session.commit()
+                
+        # Delete the book
+        thisBook = session.query(Book).filter_by(id=book_id).one()
+        session.delete(thisBook)
+        session.commit()
+        
         flash("The book '%s' has been deleted!" % thisBook.title[:60])
 
         # After the book has been deleted, check if there are empty packages or
