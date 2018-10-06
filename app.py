@@ -1022,18 +1022,21 @@ def deletePackage(package_id):
         # thisPackage and books and delete them too. Send a flash message once
         # the deletion has been completed and show the page of all package.
 
-        thisPackageAssociations = session.query(Packagebook).\
-            filter_by(package_id=package_id)
-
         if thisPackageAssociations is not None:
             for association in thisPackageAssociations:
-                session.delete(association)
-                session.commit()
+                try:
+                    session.delete(association)
+                    session.commit()
+                except:
+                    session.rollback()
         
         thisPackage = session.query(Package).\
             filter_by(id=package_id, user_id=currentUser).one()
-        session.delete(thisPackage)
-        session.commit()
+        try:
+            session.delete(thisPackage)
+            session.commit()
+        except:
+            session.rollback()
 
         flash("Package #0000%s has been successfully deleted!" % package_id)
         return redirect(url_for('showPackages'))
